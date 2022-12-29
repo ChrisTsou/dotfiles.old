@@ -1,0 +1,56 @@
+# Download Znap, if it's not there yet.
+[[ -f ~/Git/zsh-snap/znap.zsh ]] ||
+    git clone --depth 1 -- \
+        https://github.com/marlonrichert/zsh-snap.git ~/Git/zsh-snap
+
+source ~/Git/zsh-snap/znap.zsh  # Start Znap
+
+#vi mode
+bindkey -v
+#layout changes
+bindkey -a n forward-char
+bindkey -a t down-history
+bindkey -a s up-history
+
+# disable shell os terminal device flow control
+# so ctrl+s works
+stty ixany
+stty ixoff -ixon
+
+#source aliases
+. ~/.zsh_aliases
+
+#source custom scripts
+#source "$HOME/customScripts/winopen.sh"
+
+#znap needs to be cloned first
+
+#zsh-autocomplete
+zstyle ':autocomplete:*' min-delay 0.5
+zstyle ':autocomplete:*' min-input 1
+zstyle ':autocomplete:tab:*' widget-style menu-select
+zstyle ':autocomplete:tab:*' insert-unambiguous yes
+zstyle ':completion:*:complete:-command-:*:*' ignored-patterns '*.dll|*.exe|*.so|*.pyd|*.mof'
+
+#plugins
+znap source marlonrichert/zsh-autocomplete
+znap source MenkeTechnologies/zsh-more-completions
+
+# NOTE: All configuration below should come AFTER sourcing zsh-autocomplete!
+#bindkey $key[Control-Space] list-expand
+#bindkey -M menuselect $key[Return] .accept-line
+
+#compdef
+#znap function _rustup 'znap eval rustup-completion "rustup completions zsh"'
+#compdef _rustup rustup
+#znap function _cargo 'znap eval cargo-completion "rustup completions zsh cargo"'
+#compdef _cargo cargo
+znap function _chezmoi 'znap eval chezmoi-completion "chezmoi completion zsh"'
+compdef _chezmoi chezmoi
+
+#tool eval
+znap eval zoxide 'zoxide init zsh'
+znap eval starship 'starship init zsh --print-full-init'
+
+export PNPM_HOME="/home/christsou/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"

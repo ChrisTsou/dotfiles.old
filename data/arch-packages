@@ -1,0 +1,33 @@
+#utils
+unzip
+
+#apps
+neovim
+google-chrome
+
+#terminal
+kitty
+zsh
+starship
+
+#rewritten in rust
+exa
+zoxide
+bat
+fd
+procs
+sd
+dust
+ripgrep
+tealdeer
+bandwhich
+
+#git
+github-cli
+lazygit
+
+#lunarvim deps
+python-pip
+npm
+nodejs
+rustup

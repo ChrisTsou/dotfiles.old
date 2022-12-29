@@ -1,0 +1,22 @@
+#!/bin/bash
+set -eufo pipefail
+
+# arch_packages hash: {{ include "data/arch-packages" | sha256sum }}
+
+install_packages() (
+    {{ if eq .chezmoi.osRelease.idLike "arch"}}
+        local package_file={{- .chezmoi.sourceDir -}}/data/arch-packages
+    {{ end }}
+
+    #grep non-empty and non-comment lines from package_file
+    local packages=$(grep -E -v '(^\s*$)|^#' $package_file)
+
+    {{ if eq .chezmoi.osRelease.id "endeavouros"}}
+        yay -S $packages --noconfirm
+    {{ end }}
+    {{ if eq .chezmoi.osRelease.id "manjaro"}}
+        pamac install $packages --no-confirm
+    {{ end }}
+)
+
+install_packages

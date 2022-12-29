@@ -1,0 +1,18 @@
+path+=$HOME/.local/bin
+
+#ENV
+export EDITOR="nvim"
+export VISUAL="nvim"
+
+export HISTFILE=~/.histfile
+export HISTSIZE=1000                   # Maximum events for internal history
+export SAVEHIST=1000                   # Maximum events in history file
+
+{{ if .is_wsl }}
+    #set windows chrome as browser for wsl
+    export BROWSER="/mnt/c/Program Files/Google/Chrome/Application/chrome.exe"
+    export BROWSER=wslview
+{{ end }}
+
+#bat man
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"

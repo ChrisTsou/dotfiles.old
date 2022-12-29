@@ -1,0 +1,8 @@
+#!/bin/sh
+
+#create ssh key if cat doesnt find one
+test -f ~/.ssh/id_rsa || ssh-keygen -q -t rsa -N '' -f ~/.ssh/id_rsa <<<y >/dev/null 2>&1 &&
+
+eval "$(ssh-agent -s)" &&
+ssh-add ~/.ssh/id_rsa &&
+gh auth login --git-protocol ssh --web --scopes admin:public_key

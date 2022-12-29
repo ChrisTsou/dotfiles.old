@@ -1,0 +1,13 @@
+README.md
+LICENSE
+install.sh
+data/**
+{{ if ne .chezmoi.os "linux"}}
+    .config/
+    .chezmoiscripts/1_os/linux/**
+    .chezmoiscripts/2_distro/**
+    .zsh_aliases
+    .zshenv
+    .zshrc
+    .lesskey
+{{ end }}

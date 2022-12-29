@@ -1,0 +1,8 @@
+alias li='exa --icons --sort=type -1'
+alias lia='exa -a --icons --sort=type -1'
+alias cl='clear'
+alias dl='curl -LJO'
+alias hrpath="tr ':' '\n' <<< '$PATH'"
+{{ if .is_wsl }}
+    alias qq='wsl.exe --shutdown'
+{{ end }}
