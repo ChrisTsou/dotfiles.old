@@ -37,6 +37,13 @@ znap source jeffreytse/zsh-vi-mode
 znap source marlonrichert/zsh-autocomplete
 znap source MenkeTechnologies/zsh-more-completions
 
+#zsh-vi-mode bindings
+zvm_after_lazy_keybindings () {
+   zvm_bindkey vicmd 'n' forward-char
+   zvm_bindkey vicmd 't' down-history
+   zvm_bindkey vicmd 's' up-history
+}
+
 # NOTE: All configuration below should come AFTER sourcing zsh-autocomplete!
 #bindkey $key[Control-Space] list-expand
 #bindkey -M menuselect $key[Return] .accept-line
